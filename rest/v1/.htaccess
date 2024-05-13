@@ -1,0 +1,28 @@
+RewriteEngine On
+# use for authentication
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+Header set Access-Control-Allow-Origin *
+
+#################################### ALL FOR DEVELOPER #################################
+
+### SETTING ROLES ###
+RewriteRule ^works$ controllers/works/works.php [L]
+RewriteRule ^works/([0-9]+)$ controllers/works/works.php?worksid=$1 [L]
+RewriteRule ^works/active/([0-9]+)$ controllers/works/active.php?worksid=$1 [L]
+RewriteRule ^works/search$ controllers/works/search.php [L]
+
+### SETTING ROLES ###
+RewriteRule ^certificate$ controllers/certificate/certificate.php [L]
+RewriteRule ^certificate/([0-9]+)$ controllers/certificate/certificate.php?certificateid=$1 [L]
+RewriteRule ^certificate/active/([0-9]+)$ controllers/certificate/active.php?certificateid=$1 [L]
+RewriteRule ^certificate/search$ controllers/certificate/search.php [L]
+
+### SETTING ROLES ###
+RewriteRule ^badge$ controllers/badge/badge.php [L]
+RewriteRule ^badge/([0-9]+)$ controllers/badge/badge.php?badgeid=$1 [L]
+RewriteRule ^badge/active/([0-9]+)$ controllers/badge/active.php?badgeid=$1 [L]
+RewriteRule ^badge/search$ controllers/badge/search.php [L]
