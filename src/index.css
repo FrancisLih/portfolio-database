@@ -19,7 +19,9 @@
 }
 
 :root {
-    --primary: 255 255 255;
+    /* --primary-purple: 40 16 78 ; /*dark purple */
+    /*--secondary-purple: 98 55 160 ; light purple */
+    --primary: 255 255 255; /* white */
     --secondary: 242 242 242;
     --accent: 80 221 144;
     --content: 0 0 0;
@@ -28,6 +30,7 @@
     --disable: 127 127 127;
     --info: 68 120 208;
     --warning: 177 134 47 ;
+
 }
 .dark {
     --primary: 0 0 0;
@@ -224,6 +227,8 @@ input[type=number] {
     stroke-linecap: round;
     animation: dash 1s ease-in-out infinite;
   }
+
+  /*  */
   
   @keyframes dash {
     0% {
@@ -241,3 +246,15 @@ input[type=number] {
     }
   }
 
+  /* typing animation */
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary); }
+  }

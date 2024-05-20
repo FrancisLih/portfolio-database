@@ -46,9 +46,11 @@ const BadgeTable = ({isLoading, isFetching, badge, setItemEdit}) => {
             <thead>
                 <tr >
                     <th className='w-[20px]'>#</th>
-                    <th className='w-[150px]'>Title</th>
-                    <th className='w-[80px]'>Category</th>
-                    <th className='w-[80px]'>Published</th>
+                    <th className='w-[150px]'>Image</th>
+                    <th className='w-[80px]'>Title</th>
+                    <th className='w-[80px]'>Active</th>
+                    <th className='w-[80px]'>Description</th>
+                    <th className='w-[80px]'>Date Published</th>
                     <th className='w-[100px]'>Action</th>
                 </tr>
             </thead>
@@ -71,10 +73,12 @@ const BadgeTable = ({isLoading, isFetching, badge, setItemEdit}) => {
                 
                     {badge?.data.map((item,key)=>(
                          <tr key={key}>
-                         <td>{counter}</td>
+                         <td>{counter++}</td>
+                         <td>{item.badge_image}</td>
                          <td>{item.badge_title}</td>
-                         <td>{item.badge_category}</td>
-                         <td>{item.badge_publish_date}</td>
+                         <td>{item.badge_active}</td>
+                         <td>{item.badge_description}</td>
+                         <td>{item.badge_date_published}</td>
                          <td className='table-action'>
                          <ul>
                              {item.badge_is_active ? (

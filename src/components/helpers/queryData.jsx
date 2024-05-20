@@ -1,3 +1,5 @@
+// import { devApiUrl, devKey } from "./functions-general";
+
 import { devApiUrl, devKey } from "./functions-general";
 
 export const queryData = (endpoint, method = "get", fd = {}) => {
