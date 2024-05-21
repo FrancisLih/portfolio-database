@@ -3,11 +3,13 @@
 Class Works {
 
     public $works_aid;
-    public $works_image;
     public $works_title;
+    public $works_image;
     public $works_description;
     public $works_is_active;
     public $works_date_published;
+    public $works_created;
+    public $works_datetime;
 
     public $works_search;
     
@@ -23,24 +25,30 @@ Class Works {
 
     public function create() {
         try {
-            $sql = "insert into {$this->tblWorks}";
-            $sql .= "( works_image, ";
-            $sql .= "works_title, ";
+            $sql = "insert into {$this->tblWorks} ";
+            $sql .= "( works_title, ";
+            $sql .= "works_image, ";
             $sql .= "works_is_active, ";
+            $sql .= "works_date_published, ";
             $sql .= "works_description, ";
-            $sql .= "works_date_published ) values (";
-            $sql .= ":works_image, ";
+            $sql .= "works_created, ";
+            $sql .= "works_datetime ) values (";
             $sql .= ":works_title, ";
+            $sql .= ":works_image, ";
             $sql .= ":works_is_active, ";
+            $sql .= ":works_date_published, ";
             $sql .= ":works_description, ";
-            $sql .= ":works_date_published) ";
+            $sql .= ":works_created, ";
+            $sql .= ":works_datetime) ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "works_image" => $this->works_image,
                 "works_title" => $this->works_title,
+                "works_image" => $this->works_image,
                 "works_is_active" => $this->works_is_active,
-                "works_description" => $this->works_description,
                 "works_date_published" => $this->works_date_published,
+                "works_description" => $this->works_description,
+                "works_created" => $this->works_created,
+                "works_datetime" => $this->works_datetime,
             ]);
             $this->lastInsertedId = $this->connection->lastInsertId();
         } catch (PDOExeception $ex) {
@@ -55,7 +63,7 @@ Class Works {
         try {
             $sql = "select * ";
             $sql .= "from {$this->tblWorks} ";
-            $sql .= "order by works_is_active desc ";
+            // $sql .= "order by portfolio_is_active desc ";
             $query = $this->connection->query($sql);
         } catch (PDOException $ex) {
             $query = false;
@@ -82,16 +90,14 @@ Class Works {
     {
         try {
             $sql = "update {$this->tblWorks} set ";
-            $sql .= "works_image = :works_image, ";
             $sql .= "works_title = :works_title, ";
-            $sql .= "works_description = :works_description, ";
-            $sql .= "works_date_published = :works_date_published ";
+            $sql .= "works_image = :works_image, ";
+            $sql .= "works_date_published = :works_date_published, ";
             $sql .= "where works_aid  = :works_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "works_image" => $this->works_image,
                 "works_title" => $this->works_title,
-                "works_description" => $this->works_description,
+                "works_image" => $this->works_image,
                 "works_date_published" => $this->works_date_published,
                 "works_aid" => $this->works_aid,
             ]);
@@ -106,12 +112,12 @@ Class Works {
         try {
             $sql = "update {$this->tblWorks} set ";
             $sql .= "works_is_active = :works_is_active, ";
-            $sql .= "works_date_published = :works_date_published ";
+            $sql .= "works_datetime = :works_datetime ";
             $sql .= "where works_aid  = :works_aid ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "works_is_active" => $this->works_is_active,
-                "works_date_published" => $this->works_date_published,
+                "works_datetime" => $this->works_datetime,
                 "works_aid" => $this->works_aid,
             ]);
         } catch (PDOException $ex) {
@@ -126,12 +132,12 @@ Class Works {
             $sql = "select ";
             $sql .= "* ";
             $sql .= "from {$this->tblWorks} ";
-            $sql .= "where works_image like :works_image ";
+            $sql .= "where works_title like :works_title ";
             $sql .= "order by works_is_active desc, ";
-            $sql .= "works_image asc ";
+            $sql .= "works_title asc ";
             $query = $this->connection->prepare($sql);
             $query->execute([
-                "works_image" => "%{$this->works_search}%",
+                "works_title" => "%{$this->works_search}%",
             ]);
         } catch (PDOException $ex) {
             $query = false;

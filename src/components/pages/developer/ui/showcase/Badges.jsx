@@ -2,6 +2,8 @@ import React from 'react'
 
 const Badges = () => {
   return (
+<>
+<div className='h-auto pb-10'> 
     <div>
         <div className="cards grid grid-cols-3 justify-items-center gap-y-10">
         <div className="card h-[18rem]   p-2">
@@ -10,6 +12,7 @@ const Badges = () => {
               </div>
         </div>
     </div>
+    </div></>
   )
 }
 

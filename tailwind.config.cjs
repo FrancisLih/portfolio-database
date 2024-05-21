@@ -3,28 +3,31 @@ export default {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      screens: {
+        'xs': '490px',
+        'sm': '576px',
+        'md': '768px',
+        'lg': '992px',
+        'xl': '1200px',
+        '2xl': '1400px',
+      },
       colors: {
         primary: 'rgb(var(--primary) / <alpha-value>)',
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
+        modal: 'rgb(var(--modal) / <alpha-value>)',
         content: 'rgb(var(--content) / <alpha-value>)',
         line:'rgb(var(--line) / <alpha-value>)',
-        alert: 'rgb(var(--alert) / <alpha-value>)',
-        disable: 'rgb(var(--disable) / <alpha-value>)',
-        info: 'rgb(var(--info) / <alpha-value>)',
-        warning: 'rgb(var(--warning) / <alpha-value>)',
+        icon:'rgb(var(--icon) / <alpha-value>)',
       },
 
       backgroundColor: {
         primary: 'rgb(var(--primary) / <alpha-value>)',
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
+        modal: 'rgb(var(--modal) / <alpha-value>)',
         content: 'rgb(var(--content) / <alpha-value>)',
-        line:'rgb(var(--line) / <alpha-value>)',
-        alert: 'rgb(var(--alert) / <alpha-value>)',
-        disable: 'rgb(var(--disable) / <alpha-value>)',
-        info: 'rgb(var(--info) / <alpha-value>)',
-        warning: 'rgb(var(--warning) / <alpha-value>)',
+        icon: 'rgb(var(--icon) / <alpha-value>)',
       },
 
       fill: {
@@ -32,11 +35,7 @@ export default {
         secondary: 'var(--secondary)',
         accent: 'var(--accent)',
         content: 'var(--content)',
-        line:'var(--line)',
-        alert: '(var(--alert)',
-        disable: '(var(--disable)',
-        info: '(var(--info)',
-        warning: '(var(--warning)'
+        icon: 'var(--icon)',
       },
 
       gridTemplateColumns: {
@@ -47,19 +46,6 @@ export default {
         thick: "Roboto-medium",
         thicker: "Roboto-bold",
       },
-      keyframes:{
-        rotate:{
-          "100%":{transform:"rotate(360deg)"}
-        },
-        loading: {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(100%)" },
-        },
-      },
-      animation: {
-        rotate: "rotate 2s linear infinite",
-        loading: "loading 1.5s ease-in infinite"
-      }
     },
   },
   plugins: [],

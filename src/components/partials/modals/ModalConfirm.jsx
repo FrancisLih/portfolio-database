@@ -43,7 +43,7 @@ const ModalConfirm = ({position, endpoint, queryKey, isArchiving, setIsSuccess})
     <>
     <ModalWrapper position = {position}>
     <div className="modal-main max-w-[400px] w-full ">
-      <div className="modal-header bg-warning text-white flex justify-between items-center p-3 rounded-t-md">
+      <div className="modal-header bg-modal text-white flex justify-between items-center p-3 rounded-t-md">
         <h4 className='mb-0  text-white'>Confirm</h4>
         <button onClick={handleClose}><LiaTimesSolid/></button>
       </div>

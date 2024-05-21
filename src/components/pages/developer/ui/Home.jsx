@@ -7,13 +7,13 @@ import Experience from './experience/Experience'
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Header/>
       <Banner/>
       <About/>
       <Showcase/>
       <Experience/>
-    </div>
+    </>
   )
 }
 

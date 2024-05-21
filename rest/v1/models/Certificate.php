@@ -5,7 +5,6 @@ Class Certificate {
     public $certificate_aid;
     public $certificate_image;
     public $certificate_title;
-    public $certificate_description;
     public $certificate_is_active;
     public $certificate_date_published;
     public $certificate_created;

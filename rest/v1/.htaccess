@@ -26,3 +26,13 @@ RewriteRule ^badge$ controllers/badge/badge.php [L]
 RewriteRule ^badge/([0-9]+)$ controllers/badge/badge.php?badgeid=$1 [L]
 RewriteRule ^badge/active/([0-9]+)$ controllers/badge/active.php?badgeid=$1 [L]
 RewriteRule ^badge/search$ controllers/badge/search.php [L]
+
+### SETTING ROLES ###
+RewriteRule ^experience$ controllers/experience/experience.php [L]
+RewriteRule ^experience/([0-9]+)$ controllers/experience/experience.php?experienceid=$1 [L]
+RewriteRule ^experience/active/([0-9]+)$ controllers/experience/active.php?experienceid=$1 [L]
+RewriteRule ^experience/search$ controllers/experience/search.php [L]
+
+# photo uploader:{
+    RewriteRule ^upload/photo$ core/upload-photo.php [L]
+# }

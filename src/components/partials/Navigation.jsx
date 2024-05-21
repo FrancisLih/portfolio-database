@@ -17,13 +17,11 @@ const Navigation = () => {
       </div>
         
 
-        <ul className='nav'>
-            <li className='nav-link active'><Link to="#"><RxDashboard/>Dashboard</Link></li>
-            <li className='nav-link'><Link to="#"><AiOutlineMessage />Messenger</Link></li>
-            <li className='nav-link'><Link to="#"><LuCalendarDays/>Calendar</Link></li>
-            <li className='nav-link'><Link to="#"><CiFileOn/>Database</Link></li>
-            <li className='nav-link'><Link to="#"><HiOutlineChartBar/>Attendance</Link></li>
-            <li className='nav-link'><Link to="#"><IoSettingsOutline/>Settings</Link></li>
+        <ul className='nav space-y-4 mt-20 '>
+            <li className='nav-link'><Link to="/database/works"><RxDashboard/>Works</Link></li>
+            <li className='nav-link'><Link to="/database/certificate"><AiOutlineMessage />Certificates</Link></li>
+            <li className='nav-link'><Link to="/database/badges"><LuCalendarDays/>Badges</Link></li>
+            <li className='nav-link'><Link to="/database/experience"><CiFileOn/>Skills</Link></li>
         </ul>
     </aside>
   )

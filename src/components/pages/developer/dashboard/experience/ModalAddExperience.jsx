@@ -10,8 +10,9 @@ import { setError, setIsAdd, setMessage, setSuccess } from '../../../../../store
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { queryData } from '../../../../helpers/queryData'
 import useUploadPhoto from '../../../../custom-hook/useUploadPhoto'
+import { devBaseImgUrl } from '../../../../helpers/functions-general';
 
-const ModalAddBadge = ({itemEdit}) => {
+const ModalAddExperience = ({itemEdit}) => {
     const {store, dispatch} = React.useContext(StoreContext)
     const handleClose = () => dispatch(setIsAdd(false))
 
@@ -19,13 +20,13 @@ const ModalAddBadge = ({itemEdit}) => {
     const mutation = useMutation({
         mutationFn: (values) =>
         queryData(
-            itemEdit ? `/v1/badge/${itemEdit.badge_aid}` :`/v1/badge`,
+            itemEdit ? `/v1/experience/${itemEdit.experience_aid}` :`/v1/experience`,
             itemEdit ? "put" : "post",
             values
         ),
    
         onSuccess: (data) => {
-        queryClient.invalidateQueries({ queryKey: ["badge"] });
+        queryClient.invalidateQueries({ queryKey: ["experience"] });
         if (data.success) {
             dispatch(setIsAdd(false));
             dispatch(setSuccess(true));
@@ -40,19 +41,19 @@ const ModalAddBadge = ({itemEdit}) => {
     });
 
     const initVal = {
-        badge_title : itemEdit ? itemEdit.badge_title : "",
-        badge_image : itemEdit ? itemEdit.badge_image : "",
-        // badge_category : itemEdit ? itemEdit.badge_category : "",
-        // badge_description : itemEdit ? itemEdit.badge_description : "",
-        badge_publish_date : itemEdit ? itemEdit.badge_publish_date : "",
+        experience_title : itemEdit ? itemEdit.experience_title : "",
+        experience_image : itemEdit ? itemEdit.experience_image : "",
+        // experience_category : itemEdit ? itemEdit.experience_category : "",
+        // experience_description : itemEdit ? itemEdit.experience_description : "",
+        // experience_publish_date : itemEdit ? itemEdit.experience_publish_date : "",
     }
     
     const yupSchema = Yup.object({
-        badge_title :Yup.string().required('Required'),
-        // badge_image :Yup.string().required('Required'),
-        // badge_category :Yup.string().required('Required'),
-        badge_description :Yup.string().required('Required'),
-        // badge_publish_date :Yup.string().required('Required'),
+        experience_title :Yup.string().required('Required'),
+        // experience_image :Yup.string().required('Required'),
+        // experience_category :Yup.string().required('Required'),
+        // experience_description :Yup.string().required('Required'),
+        // experience_publish_date :Yup.string().required('Required'),
     })
 
     const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto(
@@ -64,7 +65,7 @@ const ModalAddBadge = ({itemEdit}) => {
     <ModalWrapper>
     <div className="main-modal w-[300px] bg-modal text-content h-full">
               <div className="modal-header p-4 relative">
-                  <h2>New Badge</h2>
+                  <h2>New Experience</h2>
                   <button className='absolute top-[25px] right-4' onClick={handleClose}><LiaTimesSolid/></button>
               </div>
               <div className="modal-body p-4">
@@ -74,12 +75,12 @@ const ModalAddBadge = ({itemEdit}) => {
                        onSubmit={async (values) => {
                         uploadPhoto()
                         mutation.mutate({...values, 
-                            badge_image:
-                            (itemEdit && itemEdit.badge_image === "") || photo
+                            experience_image:
+                            (itemEdit && itemEdit.experience_image === "") || photo
                               ? photo === null
-                                ? itemEdit.badge_image
+                                ? itemEdit.experience_image
                                 : photo.name
-                              : values.badge_image,})
+                              : values.experience_image,})
                       }}
                   >
                       {(props) => {
@@ -89,13 +90,13 @@ const ModalAddBadge = ({itemEdit}) => {
 
                       <div className="input-wrap">
 
-                                        {photo || (itemEdit && itemEdit.badge_image !== "") ? (
+                                        {photo || (itemEdit && itemEdit.experience_image !== "") ? (
                                         <img
                                         src={
                                         photo
                                         ? URL.createObjectURL(photo) // preview
-                                        : itemEdit.badge_image // check db
-                                        ? devBaseImgUrl + "/" + itemEdit.badge_image
+                                        : itemEdit.experience_image // check db
+                                        ? devBaseImgUrl + "/" + itemEdit.experience_image
                                         : null
                                         }
                                         alt="Photo"
@@ -136,14 +137,14 @@ const ModalAddBadge = ({itemEdit}) => {
                           <InputText
                               label="Title"
                               type="text"
-                              name="badge_title"
+                              name="experience_title"
                           />
                       </div>
                       {/* <div className="input-wrap">
                           <InputText
                               label="Category"
                               type="text"
-                              name="badge_category"
+                              name="experience_category"
                           />
                       </div> */}
 
@@ -151,23 +152,23 @@ const ModalAddBadge = ({itemEdit}) => {
                           <InputText
                               label="Image"
                               type="text"
-                              name="badge_image"
+                              name="experience_image"
                           />
                       </div> */}
 
-                      <div className="input-wrap">
+                      {/* <div className="input-wrap">
                       <InputTextArea
                               label="Description"
                               type="text"
-                              name="badge_description"
+                              name="experience_description"
                               className='h-[10rem] resize-none'
                           />
-                      </div>
+                      </div> */}
                       {/* <div className="input-wrap">
                           <InputText
                               label="Publish Date"
                               type="text"
-                              name="badge_publish_date"
+                              name="experience_publish_date"
                           />
                       </div> */}
 
@@ -176,8 +177,8 @@ const ModalAddBadge = ({itemEdit}) => {
                       </div>
 
                       <div className='form-action'>
-                          <button className='btn btn-form btn-primary' type="submit"> {mutation.isPending ?<SpinnerButton/> : "Add"}</button>
-                          <button className='btn btn-form btn-modal' type="button" onClick={handleClose}>Cancel</button>
+                          <button className='btn btn-form btn-add' type="submit"> {mutation.isPending ?<SpinnerButton/> : "Add"}</button>
+                          <button className='btn btn-form btn-cancel' type="button" onClick={handleClose}>Cancel</button>
                       </div>
                   </Form>)}}
                   
@@ -189,4 +190,4 @@ const ModalAddBadge = ({itemEdit}) => {
   )
 }
 
-export default ModalAddBadge
+export default ModalAddExperience

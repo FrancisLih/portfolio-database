@@ -4,12 +4,13 @@ import Header from '../../../../partials/Header'
 import { Link } from 'react-router-dom'
 import { FiPlus } from 'react-icons/fi'
 import BadgeTable from './BadgeTable'
-import ModalAddBadge from './ModalAddBadge'
+
 import useQueryData from '../../../../custom-hook/useQueryData'
 import { setIsAdd } from '../../../../../store/StoreAction'
 import { StoreContext } from '../../../../../store/StoreContext'
 import ModalError from '../../../../partials/modals/ModalError'
 import Toast from '../../../../partials/Toast'
+import ModalAddBadge from './ModalAddBadge'
 
 const Badge = () => {
 

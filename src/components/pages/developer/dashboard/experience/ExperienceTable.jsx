@@ -9,7 +9,7 @@ import ModalDelete from '../../../../partials/modals/ModalDelete'
 import { StoreContext } from '../../../../../store/StoreContext'
 import { setIsActive, setIsAdd, setIsDelete } from '../../../../../store/StoreAction'
 
-const BadgeTable = ({isLoading, isFetching, badge, setItemEdit}) => {
+const ExperienceTable = ({isLoading, isFetching, experience, setItemEdit}) => {
 
     const {store, dispatch} = React.useContext(StoreContext)
     const [isArchiving, setIsArchiving] = React.useState(0);
@@ -19,18 +19,18 @@ const BadgeTable = ({isLoading, isFetching, badge, setItemEdit}) => {
 
     const handleArchive = (item) => {
         dispatch(setIsActive(true));
-        setId(item.badge_aid)
+        setId(item.experience_aid)
         setIsArchiving(0)
     }
     const handleRestore = (item) => {
         dispatch(setIsActive(true));
-        setId(item.badge_aid)
+        setId(item.experience_aid)
         setIsArchiving(1)
     }
 
     const handleDelete = (item) => {
         dispatch(setIsDelete(true))
-        setId(item.badge_aid)
+        setId(item.experience_aid)
     }
     const handleEdit = (item) => {
         dispatch(setIsAdd(true))
@@ -38,7 +38,7 @@ const BadgeTable = ({isLoading, isFetching, badge, setItemEdit}) => {
     } 
 
 
-return (
+  return (
     <>
     <div className="table-wrapper relative">
    {isFetching && <SpinnerFetching/>}
@@ -49,8 +49,7 @@ return (
                     <th className='w-[150px]'>Image</th>
                     <th className='w-[80px]'>Title</th>
                     <th className='w-[80px]'>Active</th>
-                    <th className='w-[80px]'>Description</th>
-                    <th className='w-[80px]'>Date Published</th>
+                    <th className='w-[80px]'>Published</th>
                     <th className='w-[100px]'>Action</th>
                 </tr>
             </thead>
@@ -63,7 +62,7 @@ return (
                     </tr>)
                     }
 
-                    {badge?.data.length === 0 && (
+                    {experience?.data.length === 0 && (
                         <tr>
                             <td colSpan={9}>
                                 <NoData/>
@@ -71,17 +70,16 @@ return (
                         </tr>
                     )}
                 
-                    {badge?.data.map((item,key)=>(
+                    {experience?.data.map((item,key)=>(
                          <tr key={key}>
                          <td>{counter++}</td>
-                         <td>{item.badge_image}</td>
-                         <td>{item.badge_title}</td>
-                         <td>{item.badge_active}</td>
-                         <td>{item.badge_description}</td>
-                         <td>{item.badge_date_published}</td>
+                         <td>{item.experience_image}</td>
+                         <td>{item.experience_title}</td>
+                         <td>{item.experience_is_active}</td>
+                         <td>{item.experience_date_published}</td>
                          <td className='table-action'>
                          <ul>
-                             {item.badge_active ? (
+                             {item.experience_is_active ? (
                                  <>
                                      <li><button onClick={()=>handleEdit(item)} className="tooltip" data-tooltip="Edit"><LiaEdit/></button></li>
                                      <li><button onClick={()=>handleArchive(item)} className="tooltip" data-tooltip="Archive"><PiArchive /></button></li>
@@ -101,10 +99,10 @@ return (
             </tbody>
         </table>
     </div>
-    {store.isActive && <ModalConfirm position="center" queryKey="badge" endpoint={`/v1/badge/active/${id}`} isArchiving={isArchiving}/>}
-    {store.isDelete && <ModalDelete position="center" queryKey="badge" endpoint={`/v1/badge/${id}`} />}
+    {store.isActive && <ModalConfirm position="center" queryKey="experience" endpoint={`/v1/experience/active/${id}`} isArchiving={isArchiving}/>}
+    {store.isDelete && <ModalDelete position="center" queryKey="experience" endpoint={`/v1/experience/${id}`} />}
     </>
   )
 }
 
-export default BadgeTable
+export default ExperienceTable

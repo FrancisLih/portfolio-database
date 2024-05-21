@@ -18,7 +18,7 @@ if (isset($_SERVER['HTTP_AUTHORIZATION'])) {
 
         checkPayload($data);
         $badge->badge_aid = $_GET['badgeid'];
-        $badge->badge_is_active = trim($data["isActive"]);
+        $badge->badge_active = trim($data["isActive"]);
         $badge->badge_datetime = date("Y-m-d H:i:s");
         checkId($badge->badge_aid);
         $query = checkActive($badge);

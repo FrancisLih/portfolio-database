@@ -18,10 +18,207 @@
          url(/fonts/roboto-medium.woff2) format("woff2");
 }
 
+:root{
+    --primary: 40 16 78 ; /*dark purple */
+    --secondary: 98 55 160;/*light purple */
+    --modal: 242 242 242;
+    --accent: 255 255 255; /*white */
+    --content: 0 0 0;
+    --icon:246 248 252;
+  }
+  
+  @layer base{
+    a{
+      @apply text-content
+  }
+  
+    ul{
+        @apply list-none text-content
+    }
+  /* 
+    img{
+        @apply h-auto
+    } */
+  
+    h1,h2,h3,h4,h5,h5{
+        @apply  text-content 
+    }
+     
+    /*
+    h2{
+        @apply text-xl mb-4
+    }
+    h3{
+        @apply text-lg mb-2
+    }
+    h4{
+        @apply text-base mb-4
+    } */
+    p{
+        @apply mb-2 text-content !leading-6 opacity-60
+    }
+  
+    .img{
+      @apply w-[90px] h-[90px] mx-auto relative rounded-full bg-slate-300 flex justify-center items-center transition-[0.5s]
+    }
+    .img:after{
+      @apply content-[''] absolute top-0 left-0 w-[50%] h-[90px] bg-icon rounded-[45px_0_0_45px] opacity-30
+    }
+    .skill-title:after{
+      @apply content-[''] absolute bottom-0 right-[50%] w-0 h-[4px] rounded-[2px_0_0_2px] transition-[0.5s] bg-secondary
+    }
+    .skill-title:before{
+      @apply content-[''] absolute bottom-0 left-[50%] w-0 h-1 rounded-[0_2px_2px_0] transition-[0.5s] bg-secondary
+    }
+    .skill-title{
+      @apply flex flex-col items-center p-[0.5rem] mb-[0.5rem] relative
+    }
+    .skill-box{
+      @apply p-[1rem] cursor-pointer
+    }
+  
+    .skill-box:hover > .skill-title:after, .skill-box:hover > .skill-title:before{
+      @apply w-[35px]
+    }
+  
+    .skill-box:hover .img{
+      @apply -translate-y-2.5
+    }
+    .skill-icon{
+      @apply w-[50px] 
+    }
+    .firstName{
+      @apply font-thin text-6xl overflow-hidden whitespace-nowrap tracking-[0.15em] animate-[typing_3.5s_steps(40,end),blink-caret_0.75s_step-end_infinite] mx-auto my-0 border-r-[0.15em] border-r-primary border-solid
+    }
+    .card{
+      @apply aspect-[6/7] object-cover transition-transform duration-[1s] hover:rotate-[4deg] hover:scale-125
+    }
+
+    table{
+        @apply w-full text-sm
+    }
+    table th{
+        @apply font-bold py-4 px-2 text-left
+    }
+    table td{
+        @apply p-2 text-left
+    }
+    table tbody tr:nth-child(odd){
+        @apply bg-secondary bg-opacity-20
+    }
+    .container {
+        @apply max-w-[1220px] mx-auto px-4
+    }
+ 
+  }
+  
+  @layer components{
+    .nav-link{
+        @apply p-2 pl-8
+    }
+    .nav-link-header{
+      @apply border-b-4 border-transparent hover:border-primary px-2
+    }
+    .nav-link a{
+        @apply flex gap-3 items-center 
+    }
+    .nav-link.active a{
+        @apply text-accent
+    }
+    .nav-link.active {
+        @apply border-l border-accent
+    }
+    .btn{ 
+      @apply px-2 py-1 rounded-md text-sm transition-colors 
+    }
+    .btn--primary{
+      @apply border border-primary  text-primary hover:bg-primary hover:text-white
+    }
+    .btn--secondary{
+      @apply bg-primary  text-white hover:bg-white border border-primary hover:text-primary
+    }
+    .footer {
+      @apply bg-primary p-3
+    }
+    .footer h3{
+      @apply text-white 
+    }
+    .footer ul li{
+      @apply text-white text-2xl
+    }
+    h5::after{
+      @apply inline-block relative content-[''] bg-primary w-[19rem] h-[.2rem] bottom-5 left-4 
+    }
+    h6::after{
+      @apply 2xl:inline-block relative content-[''] bg-primary w-[19rem] h-[.2rem] bottom-5 left-4 xs:hidden
+    }
+    h6::before{
+      @apply 2xl:inline-block relative content-[''] bg-primary w-[19rem] h-[.2rem] bottom-5 right-4 xs:hidden
+    }
+    .nav-link{
+      @apply text-primary font-light border-b-4 border-transparent hover:border-b-4 hover:border-primary hover:transition-all
+    }
+    .table-action ul{
+        @apply flex gap-4
+    }
+    .form-action{
+        @apply flex gap-2 justify-end
+    }
+    .tooltip{
+        @apply text-base relative
+    }
+    .tooltip:hover::after{
+        @apply scale-100
+    }
+
+    .tooltip::after{
+        @apply absolute content-[attr(data-tooltip)] text-xs px-1.5 p-0.5 text-content bg-secondary bg-opacity-90 top-[calc(100%+10px)] left-1/2 -translate-x-1/2 scale-0 transition-transform
+    }
+    .input-wrap{
+        @apply mb-3 relative
+       }
+       .input-wrap label{
+        @apply mb-1 block
+       }
+       .input-wrap small{
+        @apply absolute top-1 right-1 italic text-xs
+       }
+       
+       .input-wrap input,
+       .input-wrap select,
+       .input-wrap textarea{
+        @apply block w-full px-1 py-2 rounded-md outline-none border-transparent border-2 transition-all 
+        /* focus:border-info 
+        focus:bg-info/5 
+        focus:text-info */
+         text-stone-800
+       }
+       .form-action{
+        @apply flex gap-2 justify-end
+       }
+
+       .loading-bar::after {
+        @apply content-[''] absolute top-0 left-0 w-[180%] h-full  bg-gradient-to-r from-transparent via-black/40 to-transparent  
+        /* animate-loading; */
+      }
+    
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary); }
+  }
+/* 
 :root {
-    /* --primary-purple: 40 16 78 ; /*dark purple */
-    /*--secondary-purple: 98 55 160 ; light purple */
-    --primary: 255 255 255; /* white */
+    /* --primary-purple: 40 16 78 ; /*dark purple 
+    /*--secondary-purple: 98 55 160 ; light purple 
+    --primary: 255 255 255; /* white 
     --secondary: 242 242 242;
     --accent: 80 221 144;
     --content: 0 0 0;
@@ -99,22 +296,7 @@
 }
 
 @layer components{
-    .nav{
-        @apply space-y-4 mt-20 
-    }
 
-    .nav-link{
-        @apply p-2 pl-8
-    }
-    .nav-link a{
-        @apply flex gap-3 items-center 
-    }
-    .nav-link.active a{
-        @apply text-accent
-    }
-    .nav-link.active {
-        @apply border-l border-accent
-    }
 
     .tab-link{
         @apply px-3 py-5
@@ -193,7 +375,7 @@
 }
 
 
-/*  */
+/*  
 @layer utilities{
     .btn{
       @apply px-2 py-1 rounded-md text-sm transition-all  flex items-center gap-2
@@ -213,14 +395,14 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
+/* Firefox 
 input[type=number] {
   -moz-appearance: textfield;
 }
 
 .spinner circle {
     fill: none;
-    /* stroke: var(--light); */
+    /* stroke: var(--light); 
     stroke-width: 6;
     stroke-dasharray: 1, 200;
     stroke-dashoffset: 0;
@@ -228,7 +410,7 @@ input[type=number] {
     animation: dash 1s ease-in-out infinite;
   }
 
-  /*  */
+  /*  
   
   @keyframes dash {
     0% {
@@ -246,15 +428,15 @@ input[type=number] {
     }
   }
 
-  /* typing animation */
+  /* typing animation 
 
   @keyframes typing {
     from { width: 0 }
     to { width: 100% }
   }
   
-  /* The typewriter cursor effect */
+  /* The typewriter cursor effect 
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: var(--primary); }
-  }
+  } */
